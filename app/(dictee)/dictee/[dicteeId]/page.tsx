@@ -63,9 +63,8 @@ export default async function Page({ params }: DicteePageProps) {
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead>#</TableHead>
-            <TableHead>Word</TableHead>
-            <TableHead>Verb Group</TableHead>
+            <TableHead className="w-0">#</TableHead>
+            <TableHead className="w-[400px]">Word</TableHead>
             <TableHead></TableHead>
           </TableRow>
         </TableHeader>
@@ -98,13 +97,11 @@ export default async function Page({ params }: DicteePageProps) {
                       f
                     </Badge>
                   )}
-                </TableCell>
-                <TableCell>
                   {verb_group > 0 ? (
-                    <Badge variant="outline">
+                    <Badge variant="outline" className="ml-2">
                       {verb_group}
                       <span className="align-super font-light">
-                        {['st', 'nd', 'rd'][--verb_group]}
+                        {['st', 'nd', 'rd'][--verb_group]} groupe
                       </span>
                     </Badge>
                   ) : (
