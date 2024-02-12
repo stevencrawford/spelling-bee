@@ -1,0 +1,18 @@
+version: "3.5"
+name: devoirs-assistant-services
+services:
+  db:
+    image: postgres
+    restart: always
+    container_name: devoirs-assistant
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_DB: "devoirs-assistant"
+      POSTGRES_PASSWORD: password
+    volumes:
+      - database-data:/var/lib/postgresql/data/
+    ports:
+      - 5432:5432
+
+volumes:
+  database-data:
