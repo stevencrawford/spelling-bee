@@ -2,11 +2,7 @@ import * as z from 'zod';
 
 import { db } from '@/lib/db';
 import { Prisma } from '@prisma/client';
-
-const dicteeCreateSchema = z.object({
-  name: z.string(),
-  content: z.string(),
-});
+import { dicteeCreateSchema } from '@/lib/validation';
 
 export async function POST(req: Request) {
   try {

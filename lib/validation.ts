@@ -2,7 +2,7 @@ import * as z from 'zod';
 
 export const dicteeCreateSchema = z.object({
   name: z.string().min(3).max(24),
-  content: z.any(),
+  content: z.string(),
 });
 
 export const translationSchema = z.object({

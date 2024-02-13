@@ -4,6 +4,7 @@ import { formatDate } from '@/lib/utils';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Badge } from '@/components/ui/badge';
 import { wordsSchema } from '@/lib/validation';
+import { DicteeOperations } from '@/components/dictee-operations';
 
 interface DicteeItemProps {
   dictee: Pick<Dictee, 'id' | 'name' | 'content' | 'published' | 'createdAt'>;
@@ -36,7 +37,7 @@ export function DicteeItem({ dictee }: DicteeItemProps) {
           </p>
         </div>
       </div>
-      {/*<DicteeOperations post={{ id: post.id, title: post.title }} />*/}
+      <DicteeOperations dictee={{ id: dictee.id }} />
     </div>
   );
 }
