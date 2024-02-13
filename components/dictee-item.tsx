@@ -3,7 +3,7 @@ import { Dictee } from '@prisma/client';
 import { formatDate } from '@/lib/utils';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Badge } from '@/components/ui/badge';
-import { wordsSchema } from '@/lib/zod';
+import { wordsSchema } from '@/lib/validation';
 
 interface DicteeItemProps {
   dictee: Pick<Dictee, 'id' | 'name' | 'content' | 'published' | 'createdAt'>;

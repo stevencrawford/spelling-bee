@@ -5,12 +5,14 @@ import {
   ChevronLeft,
   ChevronRight,
   Command,
+  Copy,
   CreditCard,
   File,
   FileText,
   HelpCircle,
   type Icon as LucideIcon,
   Image,
+  Languages,
   Laptop,
   Loader2,
   LucideProps,
@@ -32,6 +34,7 @@ export type Icon = LucideIcon;
 export const Icons = {
   logo: Command,
   close: X,
+  copy: Copy,
   spinner: Loader2,
   chevronLeft: ChevronLeft,
   chevronRight: ChevronRight,
@@ -69,6 +72,7 @@ export const Icons = {
       ></path>
     </svg>
   ),
+  translate: Languages,
   twitter: Twitter,
   check: Check,
 };

@@ -48,9 +48,9 @@ export function DicteePlayButton({
       {...props}
     >
       {isLoading ? (
-        <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
+        <Icons.spinner className="h-4 w-4 animate-spin" />
       ) : (
-        <Icons.play className="mr-2 h-4 w-4" />
+        <Icons.play className="h-4 w-4" />
       )}
     </button>
   );

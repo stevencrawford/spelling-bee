@@ -9,7 +9,7 @@ import {
 import { db } from '@/lib/db';
 import { Dictee } from '@prisma/client';
 import { notFound } from 'next/navigation';
-import { wordsSchema } from '@/lib/zod';
+import { wordsSchema } from '@/lib/validation';
 import { Badge } from '@/components/ui/badge';
 import * as React from 'react';
 import { DicteePlayButton } from '@/components/dictee-play-button';
@@ -22,7 +22,7 @@ import {
 import Link from 'next/link';
 import { Icons } from '@/components/icons';
 import { cn } from '@/lib/utils';
-import { buttonVariants } from '@/components/ui/button';
+import { Button, buttonVariants } from '@/components/ui/button';
 
 interface DicteePageProps {
   params: { dicteeId: string };
@@ -97,7 +97,7 @@ export default async function Page({ params }: DicteePageProps) {
                       f
                     </Badge>
                   )}
-                  {verb_group > 0 ? (
+                  {verb_group && verb_group > 0 ? (
                     <Badge variant="outline" className="ml-2">
                       {verb_group}
                       <span className="align-super font-light">
@@ -108,7 +108,16 @@ export default async function Page({ params }: DicteePageProps) {
                     <></>
                   )}
                 </TableCell>
-                <TableCell className="float-right">
+                <TableCell className="float-right flex space-x-2">
+                  <Button variant={'link'}>
+                    <Icons.copy className="h-10 w-4" />
+                  </Button>
+                  <Link
+                    href={`https://translate.google.com/?sl=fr&tl=en&text=${text}%0A&op=translate`}
+                    target="_blank"
+                  >
+                    <Icons.translate className="inline-flex h-10 w-4" />
+                  </Link>
                   <DicteePlayButton variant="link" word={text} />
                 </TableCell>
               </TableRow>
