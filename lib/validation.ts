@@ -15,7 +15,7 @@ export const wordSchema = z.object({
   text: z.string(),
   masculine: z.string().optional(),
   feminine: z.string().optional(),
-  verb_group: z.number().optional(), // Assuming it's always a number
+  verb_group: z.custom<0 | 1 | 2 | 3>().optional(), // Assuming it's always a number
   definition: z.string().optional(),
   translation: translationSchema.optional(),
 });

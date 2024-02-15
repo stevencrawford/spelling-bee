@@ -12,7 +12,7 @@ import { useRouter } from 'next/navigation';
 import { dicteeCreateSchema } from '@/lib/validation';
 import * as z from 'zod';
 import { Input } from '@/components/ui/input';
-import { revalidatePath } from 'next/cache';
+import Link from 'next/link';
 
 type FormData = z.infer<typeof dicteeCreateSchema>;
 
@@ -69,7 +69,13 @@ export default function DicteeCreateForm() {
           placeholder="Type your dictée here..."
           {...register('content')}
         />
-        <div className="flex justify-end">
+        <div className="flex justify-end space-x-2">
+          <Link
+            href="/dictee"
+            className={cn(buttonVariants({ variant: 'secondary' }))}
+          >
+            Cancel
+          </Link>
           <button
             type="submit"
             className={cn(buttonVariants({ variant: 'default' }))}
