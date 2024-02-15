@@ -2,12 +2,16 @@
 
 import * as React from 'react';
 import { ButtonProps } from '@/components/ui/button';
+import { useAtom } from 'jotai/index';
+import { practiceAtom } from '@/lib/atoms';
 
 interface SpokenWordProps extends ButtonProps {
   word: string;
 }
 
 export default function SpokenWord({ className, word }: SpokenWordProps) {
+  const [isPracticing] = useAtom(practiceAtom);
+
   function onClick(word: string) {
     const synth = window.speechSynthesis;
     const utterThis = new SpeechSynthesisUtterance(word);
@@ -30,7 +34,7 @@ export default function SpokenWord({ className, word }: SpokenWordProps) {
       }}
       className={`${className} hover:cursor-pointer`}
     >
-      {word}
+      {!isPracticing ? word : [...Array(word.length)].map(() => '*')}
     </span>
   );
 }

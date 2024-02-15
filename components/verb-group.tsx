@@ -8,7 +8,7 @@ interface VerbGroupProps {
 
 export default function VerbGroup({ group }: VerbGroupProps) {
   return group > 0 ? (
-    <Badge className="p-2 outline">
+    <Badge variant="outline" className="p-2">
       {group}
       <span className="flex font-light">
         <sup>{['st', 'nd', 'rd'][--group]}</sup>{' '}

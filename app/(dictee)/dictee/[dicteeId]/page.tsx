@@ -19,6 +19,7 @@ import localFont from 'next/font/local';
 import GenderBadge from '@/components/gender-badge';
 import SpokenWord from '@/components/spoken-word';
 import VerbGroup from '@/components/verb-group';
+import PracticeToggle from '@/components/practice-toggle';
 
 const frenchCursiveFont = localFont({
   src: '../../../../assets/fonts/Parisienne-Regular.ttf',
@@ -49,16 +50,20 @@ export default async function Page({ params }: DicteePageProps) {
 
   return (
     <>
-      <div className="flex items-center space-x-10">
+      <div className="grid grid-cols-2">
         <Link
           href="/dictee"
-          className={cn(buttonVariants({ variant: 'ghost' }))}
+          className={cn(
+            buttonVariants({ variant: 'ghost' }),
+            'justify-self-start',
+          )}
         >
           <>
             <Icons.chevronLeft className="mr-2 h-4 w-4" />
             Back
           </>
         </Link>
+        <PracticeToggle className="justify-self-end" />
       </div>
       <Table>
         <TableHeader>
