@@ -12,7 +12,7 @@ interface SpokenWordProps extends ButtonProps {
 export default function SpokenWord({ className, word }: SpokenWordProps) {
   const [isPracticing] = useAtom(practiceAtom);
 
-  function onClick(word: string) {
+  function speakWord(word: string) {
     const synth = window.speechSynthesis;
     const utterThis = new SpeechSynthesisUtterance(word);
 
@@ -30,11 +30,15 @@ export default function SpokenWord({ className, word }: SpokenWordProps) {
   return (
     <span
       onClick={() => {
-        onClick(word);
+        speakWord(word);
       }}
-      className={`${className} hover:cursor-pointer`}
+      className={`${className} text-4xl hover:cursor-pointer`}
     >
-      {!isPracticing ? word : [...Array(word.length)].map(() => '*')}
+      {!isPracticing
+        ? word
+        : [...Array(word.length)].map((value) => {
+            return <sub key={value}>{'*'}</sub>;
+          })}
     </span>
   );
 }
