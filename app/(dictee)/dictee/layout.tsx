@@ -1,8 +1,8 @@
-import { DicteeHeader } from '@/components/dictee-header';
 import { DicteeShell } from '@/components/dictee-shell';
 import { buttonVariants } from '@/components/ui/button';
 import Link from 'next/link';
 import { Icons } from '@/components/icons';
+import { cn } from '@/lib/utils';
 
 interface DicteeLayoutProps {
   children?: React.ReactNode;
@@ -10,20 +10,22 @@ interface DicteeLayoutProps {
 
 export default function DicteeLayout({ children }: DicteeLayoutProps) {
   return (
-    <div className="container mx-auto grid items-start gap-10 py-8">
+    <div className="container grid gap-10 py-8">
       <DicteeShell>
-        <DicteeHeader heading="Dictée" text="Create and manage dictées.">
-          <Link
-            href="/dictee/new"
-            className={buttonVariants({ variant: 'default' })}
-          >
-            <Icons.add className="mr-2 h-4 w-4" />
-            New
-          </Link>
-        </DicteeHeader>
         <main className="flex w-full flex-1 flex-col overflow-hidden">
           {children}
         </main>
+        <div className="fixed bottom-5 right-5 grid w-full justify-items-end">
+          <Link
+            href="/dictee/new"
+            className={cn(
+              buttonVariants({ variant: 'default' }),
+              'rounded-full',
+            )}
+          >
+            <Icons.add className="h-6 w-6" />
+          </Link>
+        </div>
       </DicteeShell>
     </div>
   );

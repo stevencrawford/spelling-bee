@@ -59,7 +59,6 @@ export default async function Page({ params }: DicteePageProps) {
             Back
           </>
         </Link>
-        <h2 className="font-semibold">{dictee.name}</h2>
       </div>
       <Table>
         <TableHeader>
@@ -85,7 +84,7 @@ export default async function Page({ params }: DicteePageProps) {
                     href={`https://translate.google.com/?sl=fr&tl=en&text=${text}%0A&op=translate`}
                     target="_blank"
                   >
-                    <Icons.translate className="h-6 w-6" />
+                    <Icons.translate className="h-4 w-4" />
                   </Link>
                 </TableCell>
               </TableRow>
