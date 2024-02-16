@@ -1,6 +1,6 @@
 import * as z from 'zod';
 
-export const dicteeCreateSchema = z.object({
+export const spellingCreateSchema = z.object({
   name: z.string().min(3).max(24),
   content: z.string(),
 });

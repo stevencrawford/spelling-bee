@@ -9,10 +9,10 @@ export default function NotFound() {
       <EmptyPlaceholder.Icon name="warning" />
       <EmptyPlaceholder.Title>Uh oh! Not Found</EmptyPlaceholder.Title>
       <EmptyPlaceholder.Description>
-        This dictée could not be found. Please try again.
+        This spelling list could not be found. Please try again.
       </EmptyPlaceholder.Description>
-      <Link href="/dictee" className={buttonVariants({ variant: 'ghost' })}>
-        Go back to Dictée
+      <Link href="/spelling" className={buttonVariants({ variant: 'ghost' })}>
+        Go back to Spelling Lists
       </Link>
     </EmptyPlaceholder>
   );

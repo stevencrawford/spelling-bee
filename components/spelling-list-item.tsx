@@ -1,31 +1,34 @@
 import Link from 'next/link';
-import { Dictee } from '@prisma/client';
+import { Spelling } from '@prisma/client';
 import { formatDate } from '@/lib/utils';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Badge } from '@/components/ui/badge';
 import { wordsSchema } from '@/lib/validation';
-import { DicteeOperations } from '@/components/dictee-operations';
+import { SpellingListOperations } from '@/components/spelling-list-operations';
 
-interface DicteeItemProps {
-  dictee: Pick<Dictee, 'id' | 'name' | 'content' | 'published' | 'createdAt'>;
+interface SpellingListItemProps {
+  spelling: Pick<
+    Spelling,
+    'id' | 'name' | 'content' | 'published' | 'createdAt'
+  >;
 }
 
-export function DicteeItem({ dictee }: DicteeItemProps) {
-  const validatedDicteeContent = wordsSchema.parse(
-    JSON.parse(dictee.content as string),
+export function SpellingListItem({ spelling }: SpellingListItemProps) {
+  const validatedSpellingContent = wordsSchema.parse(
+    JSON.parse(spelling.content as string),
   );
 
   return (
     <div className="flex items-center justify-between p-4">
       <div className="grid gap-1">
         <Link
-          href={`/dictee/${dictee.id}`}
+          href={`/spelling/${spelling.id}`}
           className="font-semibold hover:underline"
         >
-          {dictee.name}
+          {spelling.name}
         </Link>
         <div className="flex-wrap space-x-1">
-          {validatedDicteeContent.map(({ order, text }) => (
+          {validatedSpellingContent.map(({ order, text }) => (
             <Badge key={order} variant="outline">
               {text}
             </Badge>
@@ -33,16 +36,16 @@ export function DicteeItem({ dictee }: DicteeItemProps) {
         </div>
         <div>
           <p className="text-sm text-muted-foreground">
-            {formatDate(dictee.createdAt?.toDateString())}
+            {formatDate(spelling.createdAt?.toDateString())}
           </p>
         </div>
       </div>
-      <DicteeOperations dictee={{ id: dictee.id }} />
+      <SpellingListOperations spelling={{ id: spelling.id }} />
     </div>
   );
 }
 
-DicteeItem.Skeleton = function DicteeItemSkeleton() {
+SpellingListItem.Skeleton = function SpellingListItemSkeleton() {
   return (
     <div className="p-4">
       <div className="space-y-3">

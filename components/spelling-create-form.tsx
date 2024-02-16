@@ -9,16 +9,16 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Icons } from '@/components/icons';
 import { toast } from '@/components/ui/use-toast';
 import { useRouter } from 'next/navigation';
-import { dicteeCreateSchema } from '@/lib/validation';
+import { spellingCreateSchema } from '@/lib/validation';
 import * as z from 'zod';
 import { Input } from '@/components/ui/input';
 import Link from 'next/link';
 
-type FormData = z.infer<typeof dicteeCreateSchema>;
+type FormData = z.infer<typeof spellingCreateSchema>;
 
-export default function DicteeCreateForm() {
+export default function SpellingCreateForm() {
   const { register, handleSubmit } = useForm<FormData>({
-    resolver: zodResolver(dicteeCreateSchema),
+    resolver: zodResolver(spellingCreateSchema),
   });
   const router = useRouter();
   const [isSaving, setIsSaving] = React.useState<boolean>(false);
@@ -26,7 +26,7 @@ export default function DicteeCreateForm() {
   async function onSubmit(data: FormData) {
     setIsSaving(true);
 
-    const response = await fetch('/api/dictee', {
+    const response = await fetch('/api/spelling', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -42,16 +42,16 @@ export default function DicteeCreateForm() {
     if (!response?.ok) {
       return toast({
         title: 'Something went wrong.',
-        description: 'Your dictée was not saved. Please try again.',
+        description: 'Your spelling list was not saved. Please try again.',
         variant: 'destructive',
       });
     }
 
-    const dictee = await response.json();
+    const spelling = await response.json();
 
     // This forces a cache invalidation.
     router.refresh();
-    router.push(`/dictee/${dictee.id}`);
+    router.push(`/spelling/${spelling.id}`);
   }
 
   return (
@@ -60,18 +60,18 @@ export default function DicteeCreateForm() {
         <Input
           id="name"
           type="text"
-          placeholder="Enter dictée name"
+          placeholder="Enter spelling list name"
           {...register('name')}
         />
         <Textarea
           className="min-h-[200px]"
           id="content"
-          placeholder="Type your dictée here..."
+          placeholder="Type your spelling here..."
           {...register('content')}
         />
         <div className="flex justify-end space-x-2">
           <Link
-            href="/dictee"
+            href="/spelling"
             className={cn(buttonVariants({ variant: 'secondary' }))}
           >
             Cancel

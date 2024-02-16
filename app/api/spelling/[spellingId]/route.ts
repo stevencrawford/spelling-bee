@@ -3,7 +3,7 @@ import { db } from '@/lib/db';
 
 const routeContextSchema = z.object({
   params: z.object({
-    dicteeId: z.string(),
+    spellingId: z.string(),
   }),
 });
 
@@ -15,10 +15,10 @@ export async function DELETE(
     // Validate the route params.
     const { params } = routeContextSchema.parse(context);
 
-    // Delete the dictée.
-    await db.dictee.delete({
+    // Delete the spelling.
+    await db.spelling.delete({
       where: {
-        id: params.dicteeId as string,
+        id: params.spellingId as string,
       },
     });
 

@@ -9,7 +9,7 @@ async function main() {
     create: {
       email: 'steven@example.com',
       name: 'Steven',
-      Dictee: {
+      Spelling: {
         create: [
           {
             name: 'Liste 1',

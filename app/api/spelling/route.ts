@@ -2,12 +2,12 @@ import * as z from 'zod';
 
 import { db } from '@/lib/db';
 import { Prisma } from '@prisma/client';
-import { dicteeCreateSchema } from '@/lib/validation';
+import { spellingCreateSchema } from '@/lib/validation';
 
 export async function POST(req: Request) {
   try {
     const json = await req.json();
-    const body = dicteeCreateSchema.parse(json);
+    const body = spellingCreateSchema.parse(json);
 
     const words: Prisma.JsonArray = [];
     body.content
@@ -24,7 +24,7 @@ export async function POST(req: Request) {
       where: { email: 'steven@example.com' },
     });
 
-    const dictee = await db.dictee.create({
+    const spelling = await db.spelling.create({
       data: {
         name: body.name,
         content: JSON.stringify(words),
@@ -36,7 +36,7 @@ export async function POST(req: Request) {
       },
     });
 
-    return new Response(JSON.stringify(dictee));
+    return new Response(JSON.stringify(spelling));
   } catch (error) {
     if (error instanceof z.ZodError) {
       return new Response(JSON.stringify(error.issues), { status: 422 });

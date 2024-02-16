@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { useRouter } from 'next/navigation';
-import { Dictee } from '@prisma/client';
+import { Spelling } from '@prisma/client';
 
 import {
   AlertDialog,
@@ -23,15 +23,15 @@ import {
 import { toast } from '@/components/ui/use-toast';
 import { Icons } from '@/components/icons';
 
-async function deleteDictee(dicteeId: string) {
-  const response = await fetch(`/api/dictee/${dicteeId}`, {
+async function deleteSpelling(spellingId: string) {
+  const response = await fetch(`/api/spelling/${spellingId}`, {
     method: 'DELETE',
   });
 
   if (!response?.ok) {
     toast({
       title: 'Something went wrong.',
-      description: 'Your dictée was not deleted. Please try again.',
+      description: 'Your spelling list was not deleted. Please try again.',
       variant: 'destructive',
     });
   }
@@ -39,11 +39,13 @@ async function deleteDictee(dicteeId: string) {
   return true;
 }
 
-interface DicteeOperationsProps {
-  dictee: Pick<Dictee, 'id'>;
+interface SpellingListOperationsProps {
+  spelling: Pick<Spelling, 'id'>;
 }
 
-export function DicteeOperations({ dictee }: DicteeOperationsProps) {
+export function SpellingListOperations({
+  spelling,
+}: SpellingListOperationsProps) {
   const router = useRouter();
   const [showDeleteAlert, setShowDeleteAlert] = React.useState<boolean>(false);
   const [isDeleteLoading, setIsDeleteLoading] = React.useState<boolean>(false);
@@ -57,7 +59,7 @@ export function DicteeOperations({ dictee }: DicteeOperationsProps) {
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end">
           {/*<DropdownMenuItem>*/}
-          {/*  <Link href={`/new/${dictee.id}`} className="flex w-full">*/}
+          {/*  <Link href={`/edit/${spelling.id}`} className="flex w-full">*/}
           {/*    Edit*/}
           {/*  </Link>*/}
           {/*</DropdownMenuItem>*/}
@@ -74,7 +76,7 @@ export function DicteeOperations({ dictee }: DicteeOperationsProps) {
         <AlertDialogContent>
           <AlertDialogHeader>
             <AlertDialogTitle>
-              Are you sure you want to delete this dictée?
+              Are you sure you want to delete this spelling list?
             </AlertDialogTitle>
             <AlertDialogDescription>
               This action cannot be undone.
@@ -87,7 +89,7 @@ export function DicteeOperations({ dictee }: DicteeOperationsProps) {
                 event.preventDefault();
                 setIsDeleteLoading(true);
 
-                const deleted = await deleteDictee(dictee.id);
+                const deleted = await deleteSpelling(spelling.id);
 
                 if (deleted) {
                   setIsDeleteLoading(false);

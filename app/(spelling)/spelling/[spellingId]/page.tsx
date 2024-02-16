@@ -7,7 +7,7 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { db } from '@/lib/db';
-import { Dictee } from '@prisma/client';
+import { Spelling } from '@prisma/client';
 import { notFound } from 'next/navigation';
 import { wordsSchema } from '@/lib/validation';
 import * as React from 'react';
@@ -25,34 +25,34 @@ const frenchCursiveFont = localFont({
   src: '../../../../assets/fonts/Parisienne-Regular.ttf',
 });
 
-interface DicteePageProps {
-  params: { dicteeId: string };
+interface SpellingPageProps {
+  params: { spellingId: string };
 }
 
-async function getDicteeForId(dicteeId: Dictee['id']) {
-  return db.dictee.findFirst({
+async function getSpellingForId(spellingId: Spelling['id']) {
+  return db.spelling.findFirst({
     where: {
-      id: dicteeId,
+      id: spellingId,
     },
   });
 }
 
-export default async function Page({ params }: DicteePageProps) {
-  const dictee = await getDicteeForId(params.dicteeId);
+export default async function Page({ params }: SpellingPageProps) {
+  const spelling = await getSpellingForId(params.spellingId);
 
-  if (!dictee) {
+  if (!spelling) {
     notFound();
   }
 
-  const validatedDicteeContent = wordsSchema.parse(
-    JSON.parse(dictee.content as string),
+  const validatedSpellingContent = wordsSchema.parse(
+    JSON.parse(spelling.content as string),
   );
 
   return (
     <>
       <div className="grid grid-cols-2">
         <Link
-          href="/dictee"
+          href="/spelling"
           className={cn(
             buttonVariants({ variant: 'ghost' }),
             'justify-self-start',
@@ -73,7 +73,7 @@ export default async function Page({ params }: DicteePageProps) {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {validatedDicteeContent.map(
+          {validatedSpellingContent.map(
             ({ order, text, verb_group, masculine }) => (
               <TableRow key={order}>
                 <TableCell>{order}</TableCell>
