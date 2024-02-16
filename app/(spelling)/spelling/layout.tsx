@@ -18,7 +18,7 @@ export default function SpellingListLayout({
       <div className="fixed bottom-5 right-5 grid w-full justify-items-end">
         <Link
           href="/spelling/new"
-          className={cn(buttonVariants({ variant: 'default' }), 'rounded-full')}
+          className={cn(buttonVariants({ variant: 'default' }), 'bg-blue-500 rounded-full transition-colors hover:bg-blue-400')}
         >
           <Icons.add className="h-6 w-6" />
         </Link>

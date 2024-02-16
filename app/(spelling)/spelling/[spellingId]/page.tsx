@@ -37,7 +37,7 @@ async function getSpellingForId(spellingId: Spelling['id']) {
   });
 }
 
-export default async function Page({ params }: SpellingPageProps) {
+export default async function SpellingPage({ params }: SpellingPageProps) {
   const spelling = await getSpellingForId(params.spellingId);
 
   if (!spelling) {
@@ -63,7 +63,7 @@ export default async function Page({ params }: SpellingPageProps) {
             Back
           </>
         </Link>
-        <PracticeToggle className="justify-self-end" />
+        <PracticeToggle className="justify-self-end bg-blue-500 rounded-full transition-colors hover:bg-blue-400" />
       </div>
       <Table>
         <TableHeader>
