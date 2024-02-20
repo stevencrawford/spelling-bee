@@ -1,8 +1,8 @@
-import { SpellingListItem } from '@/components/spelling-list-item';
-import { db } from '@/lib/db';
+import {SpellingListItem} from '@/components/spelling-list-item';
+import {db} from '@/lib/db';
 
-export default async function SpellingListPage() {
-  const spellings = await db.spelling.findMany({
+async function getSpelling() {
+  return await db.spelling.findMany({
     select: {
       id: true,
       name: true,
@@ -14,6 +14,10 @@ export default async function SpellingListPage() {
       updatedAt: 'desc',
     },
   });
+}
+
+export default async function SpellingListPage() {
+  const spellings = await getSpelling();
 
   return (
     <>
