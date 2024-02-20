@@ -9,7 +9,8 @@
     "prettier": "prettier --write --ignore-unknown .",
     "prettier:check": "prettier --check --ignore-unknown .",
     "start": "next start",
-    "gen-password": "node -r dotenv/config ./scripts/generate-password.js"
+    "gen-password": "node -r dotenv/config ./scripts/generate-password.js",
+    "postinstall": "prisma generate"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.4",
